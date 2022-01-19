@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let data = [
+        {
+          product: 'abc',
+          price: 2000,
+          vendor: 'http://127.0.0.1:8000/vendor/1',
+        },
+        {
+          product: 'aaaa',
+          price: 2500,
+          vendor: 2,
+        },
+        {
+          product: 'product1',
+          price: 300,
+          vendor: 2,
+        },
+        {
+          product: 'xyz',
+          price: 3050,
+          vendor: 2,
+        },
+        {
+          product: 'zzz',
+          price: 500,
+          vendor: 1,
+        },
+        {
+          product: 'bbb',
+          price: 250,
+          vendor: 3,
+        },
+        {
+          product: 'yyy',
+          price: 550,
+          vendor: 2,
+        },
+      ];
+
+      console.table(data);
+
+      //   function groupByKey(array, key) {
+      //     return array.reduce((hash, obj) => {
+      //       if (obj[key] === undefined) return hash;
+      //       return Object.assign(hash, {
+      //         [obj[key]]: (hash[obj[key]] || []).concat(obj),
+      //       });
+      //     }, {});
+      //   }
+
+      //   console.log(groupByKey(data, 'vendor'));
+
+      let result = data.reduce(function (r, a) {
+        r[a.vendor] = r[a.vendor] || [];
+        r[a.vendor].push(a);
+        return r;
+      }, Object.create(null));
+
+      for (const [key, value] of Object.entries(result)) {
+        console.log(`${key} : ${value.length}`);
+      }
+    </script>
+  </body>
+</html>
